@@ -1,16 +1,9 @@
 # Prerequisites: jq (available in the Azure Cloud Shell)
 
-resourcegroup="diberry-app-to-app"
-frontend="diberry-frontend-2"
-backend="diberry-backend-2"
-loginParameters=$(echo "scope=openid profile email offline_access api://$backend/user_impersonation")
+# Replace <RESOURCE-GROUP-NAME> with the name of the resource group
+# Replace <FRONTEND-RESOURCE-NAME> with the name of the frontend app
+# Replace <BACKEND-RESOURCE-NAME> with the name of the backend app
 
-
-# Get the current auth settings
-#authSettings=$(az webapp auth show -g $resourcegroup -n $frontend)
-
-# Add the login parameters to the Azure AD identity provider
-#authSettings=$(echo "$authSettings" | jq '.properties' | jq '.identityProviders.azureActiveDirectory.login += {"loginParameters":[$loginParameters]}')
-
-# Update the auth settings
-#az webapp auth set --resource-group myAuthResourceGroup --name $frontend --body "$authSettings"
+authSettings=$(az webapp auth show -g <RESOURCE-GROUP-NAME> -n <FRONTEND-RESOURCE-NAME>-2)
+authSettings=$(echo "$authSettings" | jq '.properties' | jq '.identityProviders.azureActiveDirectory.login += {"loginParameters":["scope=openid profile email offline_access api://<BACKEND-RESOURCE-NAME>/user_impersonation"]}')
+az webapp auth set --resource-group <RESOURCE-GROUP-NAME> --name <FRONTEND-RESOURCE-NAME>-2 --body "$authSettings"
