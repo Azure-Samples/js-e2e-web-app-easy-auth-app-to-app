@@ -107,7 +107,7 @@ export const create = async () => {
 
       // Get remote URL from environment variable
       // Should be in format of https://server/profile
-      let remoteUrl = process.env.API_B_URL + "/get-profile";
+      let remoteUrl = process.env.BACKEND_URL + "/get-profile";
       if (!remoteUrl) {
         console.log(`/get-profile:!remoteUrl= ${!remoteUrl}`);
         return res.render(`${__dirname}/views/profile`, { error: 'Client: No remote URL found' });
