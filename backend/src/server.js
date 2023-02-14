@@ -18,6 +18,7 @@ export const create = async () => {
     console.log("/debug requested");
     
     res.send(prettyJson(sortJson({
+      route: "debug",
       headers: sortJson(req.headers),
       env: sortJson(process.env)
     })));
@@ -36,12 +37,11 @@ export const create = async () => {
       const accessToken = bearerToken.split(' ')[1];
       console.log(`accessToken: ${accessToken}`);
 
-      const fakeProfile = {
-        "displayName": "John Doe",
-      }
-
       return res.status(200).json({
-        profile: fakeProfile,
+        route: "/profile success",
+        profile: {
+          "displayName": "John Doe",
+        },
         headers: req.headers,
         bearerToken,
         env: process.env,
@@ -52,9 +52,10 @@ export const create = async () => {
       console.log(`/get-profile err: ${JSON.stringify(err)}`);
       return res.status(200).json({
         error: {
-          "profile": "error",
-          "server_response": err,
-          "message": err.message
+          route: "/profile error",          
+          profile: "error",
+          server_response: err,
+          message: err.message
         }
       });
     }

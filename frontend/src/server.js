@@ -106,9 +106,8 @@ export const create = async () => {
     try {
 
       // Get remote URL from environment variable
-      let remoteUrl = (!process.env.NODE_ENV || process.env.NODE_ENV === "production")
-        ? process.env.API_B_URL
-        : "http://localhost:8081/get-profile";
+      // Should be in format of https://server/profile
+      let remoteUrl = process.env.API_B_URL + "/get-profile";
       if (!remoteUrl) {
         console.log(`/get-profile:!remoteUrl= ${!remoteUrl}`);
         return res.render(`${__dirname}/views/profile`, { error: 'Client: No remote URL found' });
@@ -132,10 +131,12 @@ export const create = async () => {
       // Data for rendered view
       const dataForView = {
         error,
+        remoteUrl: remoteUrl,
         profile: sortJson(response.profile),
         headers: sortJson(response.headers),
         env: sortJson(response.env),
         bearerToken: response.bearerToken,
+        raw: response
       };
 
       // Success - render view

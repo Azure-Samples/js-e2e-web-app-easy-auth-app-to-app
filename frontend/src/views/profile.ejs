@@ -15,6 +15,7 @@
 
 <body>
     <h2>API server - Profile</h2>
+    <h5>Remote url: <%= remoteUrl %></h5>
 
     <% if (error) { %>
 
@@ -25,7 +26,7 @@
 
         <% } else { %>
 
-            <h3>API Service - Microsoft Graph User Profile</h3>
+            <h3>Success</h3>
             <p>
                 <%- JSON.stringify(profile, null, 6) .replace(/\n( *)/g, function (match, p1) { return '<br>' + '&nbsp;'
                     .repeat(p1.length); }); %>
@@ -52,6 +53,7 @@
             </div>
             </p>
             <% } %>
+            <p><%= JSON.stringify(raw) %></p>
 
 </body>
 
