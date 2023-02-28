@@ -13,12 +13,14 @@ export const getRemoteProfile = async (remoteUrl, accessToken) => {
             };
         }
 
+        /*
         if (!accessToken) {
             console.log(`!accessToken`);
             return {
                 error: 'Client: No access token found'
             };
-        }        
+        }
+        */
 
         // Get remote profile
         const response = await fetch(remoteUrl, {
