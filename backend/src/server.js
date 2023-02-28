@@ -53,25 +53,29 @@ export const create = async () => {
 
       }
 
-      return res.status(200).json({
+      const dataToReturn = {
         route: '/profile success',
         profile: fakeProfile,
         headers: req.headers,
         bearerToken,
         env: process.env,
         error: null,
-      });
+      }
+      console.log(`dataToReturn: ${JSON.stringify(dataToReturn)}`)
+
+      return res.status(200).json(dataToReturn);
 
     } catch (err) {
-      console.log(`/get-profile err: ${JSON.stringify(err)}`);
-      return res.status(200).json({
+      const dataToReturn = {
         error: {
           route: '/profile error',
           profile: 'error',
           server_response: err,
           message: err.message,
         },
-      });
+      }
+      console.log(`dataToReturn: ${JSON.stringify(dataToReturn)}`)
+      return res.status(200).json(dataToReturn);
     }
   });
 
