@@ -14,9 +14,9 @@ export const create = async () => {
 
   // Get root
   app.get('/debug', async (req, res) => {
-    
+
     console.log("/debug requested");
-    
+
     res.send(prettyJson(sortJson({
       headers: sortJson(req.headers),
       env: sortJson(process.env)
@@ -40,7 +40,7 @@ export const create = async () => {
       const bearerToken = req.headers['Authorization'] || req.headers['authorization'];
       console.log(`bearerToken: ${bearerToken}`);
 
-      if(!bearerToken) {
+      if (!bearerToken) {
         const accessToken = bearerToken.split(' ')[1];
         console.log(`accessToken: ${accessToken}`);
 
@@ -73,7 +73,7 @@ export const create = async () => {
 
   // instead of 404 - just return home page
   app.get('*', (req, res) => {
-    res.json({status: "unknown url request"});
+    res.json({ status: "unknown url request" });
   });
 
   return app;
