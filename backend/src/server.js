@@ -31,41 +31,37 @@ export const create = async () => {
     console.log('/get-profile requested');
 
     try {
-      const bearerToken =
-        req.headers['Authorization'] || req.headers['authorization'];
+
+      const fakeProfile = {
+        "displayName": "John Doe",
+
+        // return true if we have an access token
+        "withAuthentication": false
+      }
+
+      const bearerToken = req.headers['Authorization'] || req.headers['authorization'];
       console.log(`bearerToken: ${bearerToken}`);
 
-      const accessToken = bearerToken.split(' ')[1];
-      console.log(`accessToken: ${accessToken}`);
+      if (!bearerToken) {
+        const accessToken = bearerToken.split(' ')[1];
+        console.log(`accessToken: ${accessToken}`);
 
-      function validAccessToken(accessToken) {
-        // access token validation removed for brevity
+        fakeProfile.withAuthentication = true;
 
-        return true;
+        // get profile from Graph API
+        // provided in next article in this series
+
       }
 
-      // headers, bearerToken, and env returned for debugging only
-      if (accessToken && validAccessToken(accessToken)) {
-        return res.status(200).json({
-          route: '/profile success',
-          profile: {
-            displayName: 'John Doe',
-          },
-          headers: req.headers, //
-          bearerToken,
-          env: process.env,
-          error: null,
-        });
-      } else {
-        return res.status(200).json({
-          route: '/profile failure - empty or invalid accessToken',
-          profile: null,
-          headers: req.headers, //
-          bearerToken,
-          env: process.env,
-          error: 'empty or invalid accessToken',
-        });
-      }
+      return res.status(200).json({
+        route: '/profile success',
+        profile: fakeProfile,
+        headers: req.headers,
+        bearerToken,
+        env: process.env,
+        error: null,
+      });
+
     } catch (err) {
       console.log(`/get-profile err: ${JSON.stringify(err)}`);
       return res.status(200).json({
