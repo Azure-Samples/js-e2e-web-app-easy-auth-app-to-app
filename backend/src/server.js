@@ -30,14 +30,25 @@ export const create = async () => {
 
     try {
 
+      const fakeProfile = {
+        "displayName": "John Doe",
+
+        // return true if we have an access token
+        "withAuthentication": false
+      }
+
       const bearerToken = req.headers['Authorization'] || req.headers['authorization'];
       console.log(`bearerToken: ${bearerToken}`);
 
-      const accessToken = bearerToken.split(' ')[1];
-      console.log(`accessToken: ${accessToken}`);
+      if(!bearerToken) {
+        const accessToken = bearerToken.split(' ')[1];
+        console.log(`accessToken: ${accessToken}`);
 
-      const fakeProfile = {
-        "displayName": "John Doe",
+        fakeProfile.withAuthentication = true;
+
+        // get profile from Graph API
+        // provided in next article in this series
+
       }
 
       return res.status(200).json({
