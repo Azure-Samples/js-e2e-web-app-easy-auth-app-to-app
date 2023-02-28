@@ -21,6 +21,7 @@
   "devDependencies": {},
   "dependencies": {
     "@microsoft/microsoft-graph-client": "^3.0.2",
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.17.1",
     "isomorphic-fetch": "^3.0.0",
