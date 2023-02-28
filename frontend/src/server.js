@@ -120,14 +120,17 @@ export const create = async () => {
       console.log(`/get-profile:accessToken= ${accessToken}`);
       const authEnabled = process.env.APPSETTING_WEBSITE_AUTH_ENABLED==='true' ? true : false;
       if (authEnabled && !accessToken) {
+        console.log(`Get access token from injected header: authEnabled && !accessToken`);
         return res.render(`${__dirname}/views/profile`, { error: 'Client: No access token found' });
       } 
 
       // Get remote profile
-      const response = await getRemoteProfile(remoteUrl, accessToken);
-      console.log(response);
+      const response = await getRemoteProfile(remoteUrl, accessToken, authEnabled);
 
       const error = (response.error && Object.keys(response.error).length > 0 ) ? JSON.stringify(response.error) : "";
+      console.log(`Returned remote profile error: ${JSON.stringify(error)}`);
+
+      console.log(`Returned remote profile: ${JSON.stringify(response.profile)}`);
 
       // Data for rendered view
       const dataForView = {
@@ -140,6 +143,7 @@ export const create = async () => {
         bearerToken: response.bearerToken,
         raw: response
       };
+      console.log(`Rendered view data: ${JSON.stringify(dataForView)}`)
 
       // Success - render view
       res.render(`${__dirname}/views/profile`, dataForView);
