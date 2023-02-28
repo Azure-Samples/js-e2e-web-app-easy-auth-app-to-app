@@ -116,13 +116,12 @@ export const create = async () => {
       }
 
       // Get access token from injected header
-      /*
       let accessToken = req.headers['x-ms-token-aad-access-token'];
       console.log(`/get-profile:accessToken= ${accessToken}`);
-      if (!accessToken) {
+      const authEnabled = process.env.APPSETTING_WEBSITE_AUTH_ENABLED==='true' ? true : false;
+      if (authEnabled && !accessToken) {
         return res.render(`${__dirname}/views/profile`, { error: 'Client: No access token found' });
-      }
-      */
+      } 
 
       // Get remote profile
       const response = await getRemoteProfile(remoteUrl, accessToken);
@@ -133,10 +132,11 @@ export const create = async () => {
       // Data for rendered view
       const dataForView = {
         error,
-        remoteUrl: remoteUrl,
+        remoteUrl,
         profile: sortJson(response.profile),
         headers: sortJson(response.headers),
         env: sortJson(response.env),
+        authEnabled,
         bearerToken: response.bearerToken,
         raw: response
       };

@@ -2,7 +2,7 @@ import { HTTPResponseError } from './error.js';
 import { sortJson } from './sortJson.js';
 import "isomorphic-fetch";
 
-export const getRemoteProfile = async (remoteUrl, accessToken) => {
+export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
 
     try {
 
@@ -13,14 +13,13 @@ export const getRemoteProfile = async (remoteUrl, accessToken) => {
             };
         }
 
-        /*
-        if (!accessToken) {
+        
+        if (authEnabled && !accessToken) {
             console.log(`!accessToken`);
             return {
                 error: 'Client: No access token found'
             };
         }
-        */
 
         // Get remote profile
         const response = await fetch(remoteUrl, {
