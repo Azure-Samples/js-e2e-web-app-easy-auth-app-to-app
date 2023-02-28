@@ -7,7 +7,7 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
     try {
 
         if (!remoteUrl ) {
-            console.log(`!remoteUrl`);
+            console.log(`getRemoteProfile: !remoteUrl`);
             return {
                 error: 'Client: No remote URL'
             };
@@ -15,7 +15,7 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
 
         
         if (authEnabled && !accessToken) {
-            console.log(`!accessToken`);
+            console.log(`getRemoteProfile: (authEnabled &&!accessToken)`);
             return {
                 error: 'Client: No access token found'
             };
@@ -29,14 +29,16 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
-        console.log(response);
+        console.log(console.log(`getRemoteProfile response: ${JSON.stringify(response)}`));
 
         // Check response status
         if (response.ok) {
 
+            console.log(console.log(`getRemoteProfile response: response.ok`));
+
             // Get api response including profile
             const apiResponse = await response.json();
-            console.log(apiResponse);
+            console.log(console.log(`getRemoteProfile response json: ${JSON.stringify(apiResponse)}`));
 
             // Data for rendered view
             return {
@@ -49,7 +51,7 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
         } else {
             
             const textError = await response.text();
-            console.log(`api Fetch error text = ${textError}`);
+            console.log(`getRemoteProfile api Fetch error text = ${textError}`);
             
             return {
                 error: {
@@ -61,6 +63,7 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
             }
         }
     } catch (error) {
+        console.log(`getRemoteProfile caught error = ${error.message}`);
         return {
             error: {
                 error: new HTTPResponseError(error),

@@ -122,7 +122,9 @@ export const create = async () => {
       if (authEnabled && !accessToken) {
         console.log(`Get access token from injected header: authEnabled && !accessToken`);
         return res.render(`${__dirname}/views/profile`, { error: 'Client: No access token found' });
-      } 
+      } else {
+        console.log(`Get access token from injected header: !(authEnabled && !accessToken)`);
+      }
 
       // Get remote profile
       const response = await getRemoteProfile(remoteUrl, accessToken, authEnabled);
