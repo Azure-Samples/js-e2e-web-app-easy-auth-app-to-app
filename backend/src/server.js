@@ -42,7 +42,7 @@ export const create = async () => {
       const bearerToken = req.headers['Authorization'] || req.headers['authorization'];
       console.log(`bearerToken: ${bearerToken}`);
 
-      if (!bearerToken) {
+      if (bearerToken) {
         const accessToken = bearerToken.split(' ')[1];
         console.log(`accessToken: ${accessToken}`);
 
