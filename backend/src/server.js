@@ -9,11 +9,11 @@ import { sortJson, prettyJson } from './sortJson.js';
 export const create = async () => {
   // Create express app
   const app = express();
-  console.log('create app');
+  console.log('backend server.js create app');
 
   // Get root
   app.get('/debug', async (req, res) => {
-    console.log('/debug requested');
+    console.log('backend server.js /debug requested');
 
     res.send(
       prettyJson(
@@ -28,7 +28,7 @@ export const create = async () => {
 
   // Get Profile and return to client
   app.get('/get-profile', async (req, res) => {
-    console.log('/get-profile requested');
+    console.log('backend server.js /get-profile requested');
 
     try {
 
@@ -40,11 +40,11 @@ export const create = async () => {
       }
 
       const bearerToken = req.headers['Authorization'] || req.headers['authorization'];
-      console.log(`bearerToken: ${bearerToken}`);
+      console.log(`backend server.js bearerToken: ${bearerToken}`);
 
       if (bearerToken) {
         const accessToken = bearerToken.split(' ')[1];
-        console.log(`accessToken: ${accessToken}`);
+        console.log(`backend server.js accessToken: ${accessToken}`);
 
         fakeProfile.withAuthentication = true;
 
@@ -61,7 +61,7 @@ export const create = async () => {
         env: process.env,
         error: null,
       }
-      console.log(`dataToReturn: ${JSON.stringify(dataToReturn)}`)
+      console.log(`backend server.js profile: ${JSON.stringify(fakeProfile)}`)
 
       return res.status(200).json(dataToReturn);
 
@@ -74,7 +74,7 @@ export const create = async () => {
           message: err.message,
         },
       }
-      console.log(`dataToReturn: ${JSON.stringify(dataToReturn)}`)
+      console.log(`backend server.js err message: ${err.message}`)
       return res.status(200).json(dataToReturn);
     }
   });

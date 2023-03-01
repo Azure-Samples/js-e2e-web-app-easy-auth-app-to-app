@@ -32,8 +32,10 @@
                     .repeat(p1.length); }); %>
             </p>
             <br><br><br><br>
+            <details>
+            <summary>Additional resources - Easy auth</summary>
             <div class="resources">
-                <p>Additional resources - Easy auth</p>
+
                 <h3>API Service HTTP Headers</h3>
                 <p>
                     <%- JSON.stringify(headers, null, 6) .replace(/\n( *)/g, function (match, p1) { return '<br>'
@@ -51,6 +53,7 @@
                     <%= bearerToken %>
                 </p>
             </div>
+            </details>
             </p>
             <% } %>
             <p><%= JSON.stringify(raw) %></p>

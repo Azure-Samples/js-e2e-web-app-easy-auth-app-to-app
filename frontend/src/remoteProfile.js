@@ -7,7 +7,7 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
     try {
 
         if (!remoteUrl ) {
-            console.log(`getRemoteProfile: !remoteUrl`);
+            console.log(`frontend remoteProfile.js getRemoteProfile: !remoteUrl`);
             return {
                 error: 'Client: No remote URL'
             };
@@ -15,7 +15,7 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
 
         
         if (authEnabled && !accessToken) {
-            console.log(`getRemoteProfile: (authEnabled &&!accessToken)`);
+            console.log(`frontend remoteProfile.js getRemoteProfile: (authEnabled &&!accessToken)`);
             return {
                 error: 'Client: No access token found'
             };
@@ -29,41 +29,40 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
-        console.log(console.log(`getRemoteProfile response: ${JSON.stringify(response)}`));
+        console.log(`frontend remoteProfile.js getRemoteProfile request access token: ${accessToken}`);
+        console.log(`frontend remoteProfile.js getRemoteProfile response: ${JSON.stringify(response.status)}`);
 
         // Check response status
         if (response.ok) {
 
-            console.log(console.log(`getRemoteProfile response: response.ok`));
-
             // Get api response including profile
             const apiResponse = await response.json();
-            console.log(console.log(`getRemoteProfile response json: ${JSON.stringify(apiResponse)}`));
+            console.log(`frontend remoteProfile.js getRemoteProfile response json: ${JSON.stringify(apiResponse?.profile)}`);
 
             // Data for rendered view
             return {
                 error: {},
-                profile: sortJson(apiResponse.profile),
-                headers: sortJson(apiResponse.headers),
-                env: sortJson(apiResponse.env),
-                bearerToken: apiResponse.bearerToken,
+                profile: sortJson(apiResponse?.profile),
+                headers: sortJson(apiResponse?.headers),
+                env: sortJson(apiResponse?.env),
+                bearerToken: apiResponse?.bearerToken,
             };
         } else {
             
             const textError = await response.text();
-            console.log(`getRemoteProfile api Fetch error text = ${textError}`);
+            console.log(`frontend remoteProfile.js getRemoteProfile api Fetch error text: ${textError?.message}`);
             
             return {
                 error: {
                     error: new HTTPResponseError(response),
-                    message: `api response not ok ${response.statusCode} ${textError}`, 
+                    message: `api response not ok ${response?.statusCode} ${textError}`, 
                     type: "getRemoteProfile - api response",
 
                 }
             }
         }
     } catch (error) {
-        console.log(`getRemoteProfile caught error = ${error.message}`);
+        console.log(`frontend remoteProfile.js getRemoteProfile caught error = ${error?.message}`);
         return {
             error: {
                 error: new HTTPResponseError(error),

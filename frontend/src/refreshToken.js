@@ -35,7 +35,7 @@ export const refreshTokenInMiddleware = async (url, accessToken) => {
             }
         }
     } catch (err) {
-        console.log(err);
+        console.log(`frontend refreshToken.js: ${JSON.stringify(err)}`);
     }
 
 }
