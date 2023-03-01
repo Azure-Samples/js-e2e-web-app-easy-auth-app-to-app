@@ -10,6 +10,6 @@ const port = process.env.WEB_PORT || 8080;
 create()
     .then(app => {
         app.listen(port, () => {
-            console.log(`Server has started on port ${port}!`);
+            console.log(`frontend index.js Server has started on port ${port}!`);
         });
-    }).catch(err => console.log(err));
+    }).catch(err => console.log(`frontend index.js: ${JSON.stringify(err)}`));

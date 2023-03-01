@@ -27,12 +27,16 @@
 
             <h3>Access token</h3>
             <p>
+                <div><%= user %></div>
+                <div><%= scope %></div>
                 <%= accessToken %>
+                
             </p>
 
             <br><br><br><br>
             <div class="resources">
-                <p>Additional resources - Easy auth</p>
+                <details>
+                <summary>Additional resources - Easy auth</summary>
 
                 <h3>Token refresh middleware</h3>
                 <p>
@@ -52,6 +56,7 @@
                         .repeat(p1.length); }); %>
                 </p>
                 </p>
+            </details>
                 <% } %>
 </body>
 
