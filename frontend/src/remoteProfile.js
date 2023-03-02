@@ -7,7 +7,6 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
     try {
 
         if (!remoteUrl ) {
-            console.log(`frontend remoteProfile.js getRemoteProfile: !remoteUrl`);
             return {
                 error: 'Client: No remote URL'
             };
@@ -15,7 +14,6 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
 
         
         if (authEnabled && !accessToken) {
-            console.log(`frontend remoteProfile.js getRemoteProfile: (authEnabled &&!accessToken)`);
             return {
                 error: 'Client: No access token found'
             };
@@ -29,8 +27,6 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
-        console.log(`frontend remoteProfile.js getRemoteProfile request access token: ${accessToken}`);
-        console.log(`frontend remoteProfile.js getRemoteProfile response: ${JSON.stringify(response.status)}`);
 
         // Check response status
         if (response.ok) {
@@ -50,7 +46,7 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
         } else {
             
             const textError = await response.text();
-            console.log(`frontend remoteProfile.js getRemoteProfile api Fetch error text: ${textError?.message}`);
+            console.log(`frontend remoteProfile.js getRemoteProfile api Fetch error text: ${response?.statusCode} ${textError}`);
             
             return {
                 error: {
