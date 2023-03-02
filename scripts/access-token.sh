@@ -1,8 +1,8 @@
 # Prerequisites: jq (available in the Azure Cloud Shell)
 
-frontendapp=frontend-abc-2
-backendapp=backend-abc-2
-groupname=0302-04-myAuthResourceGroup
+frontendapp=frontend-abc
+backendapp=backend-abc
+groupname=myAuthResourceGroup
 location="West Europe"
 os="Linux"
 planname=myPlan
