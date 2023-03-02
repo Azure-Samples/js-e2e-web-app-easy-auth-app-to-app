@@ -8,8 +8,7 @@ backendurl=https://$backendapp.azurewebsites.net
 nodeLts="NODE:16-lts"
 sku="FREE"
 
-cd js-e2e-web-app-easy-auth-app-to-app/
-cd frontend/
+cd ../frontend/
 az webapp up --resource-group "$groupname" --name "$frontendapp" --plan "$planname" --sku "$sku" --location "$location" --os-type "$os" --runtime "$nodeLts"
 cd ../backend/
 az webapp up --resource-group "$groupname" --name "$backendapp" --plan "$planname" --runtime "$nodeLts"
