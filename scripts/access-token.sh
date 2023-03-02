@@ -20,4 +20,4 @@ paramArrayObj=$( jq --null-input \
         '{"loginParameters": [$p1]}' )
 echo paramArrayObj= $paramArrayObj
 authSettings=$(echo "$authSettings" | jq '.properties' | jq --argjson p "$paramArrayObj" '.identityProviders.azureActiveDirectory.login += $p')
-az webapp auth set --resource-group $resourcegroupname --name $clientappname --body "$authSettings"
+az webapp auth set --resource-group "$resourcegroupname" --name "$frontendapp" --body "$authSettings"
