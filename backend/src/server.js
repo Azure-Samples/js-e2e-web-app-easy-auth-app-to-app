@@ -9,11 +9,9 @@ import { sortJson, prettyJson } from './sortJson.js';
 export const create = async () => {
   // Create express app
   const app = express();
-  console.log('backend server.js create app');
 
   // Get root
   app.get('/debug', async (req, res) => {
-    console.log('backend server.js /debug requested');
 
     res.send(
       prettyJson(
@@ -28,7 +26,6 @@ export const create = async () => {
 
   // Get Profile and return to client
   app.get('/get-profile', async (req, res) => {
-    console.log('backend server.js /get-profile requested');
 
     try {
 
@@ -40,15 +37,15 @@ export const create = async () => {
       }
 
       const bearerToken = req.headers['Authorization'] || req.headers['authorization'];
-      console.log(`backend server.js bearerToken: ${bearerToken}`);
+      console.log(`backend server.js bearerToken ${!!bearerToken ? 'found' : 'not found'}`);
 
       if (bearerToken) {
         const accessToken = bearerToken.split(' ')[1];
-        console.log(`backend server.js accessToken: ${accessToken}`);
+        console.log(`backend server.js accessToken: ${!!accessToken ? 'found' : 'not found'}`);
 
         fakeProfile.withAuthentication = true;
 
-        // get profile from Graph API
+        // TODO: get profile from Graph API
         // provided in next article in this series
 
       }
@@ -75,6 +72,9 @@ export const create = async () => {
         },
       }
       console.log(`backend server.js err message: ${err.message}`)
+
+      // Return 200 so error displays in browser for debugging
+      // Don't do this in production
       return res.status(200).json(dataToReturn);
     }
   });
