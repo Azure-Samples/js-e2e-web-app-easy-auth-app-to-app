@@ -1,5 +1,5 @@
 {
-  "name": "js-e2e-web-app-easy-auth-app-to-app-to-microsoft-graph",
+  "name": "frontend",
   "version": "1.0.0",
   "description": "JavaScript server written with Express.js and Microsoft Graph",
   "main": "src/index.js",
