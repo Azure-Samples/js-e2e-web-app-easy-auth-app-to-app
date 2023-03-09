@@ -51,7 +51,7 @@ export const create = async () => {
 
         // TODO: get profile from Graph API
         // provided in next article in this series
-
+        // and the server2.js file
       }
 
       const dataToReturn = {
