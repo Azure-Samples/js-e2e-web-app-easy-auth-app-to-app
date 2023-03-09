@@ -5,7 +5,7 @@ import 'isomorphic-fetch';
 import { sortJson, prettyJson } from './sortJson.js';
 
 
-// Uncomment in the app->app->graph tutorial
+// Uncomment for the app->app->graph tutorial
 // import { getGraphProfile } from './with-graph/graph';
 
 // </getDependencies>
@@ -57,8 +57,7 @@ export const create = async () => {
         profile.withAuthentication = true;
 
         // TODO: get profile from Graph API
-        // Uncomment in the app->app->graph tutorial
-        // import { getGraphProfile } from './with-graph/graph';
+        // Uncomment for the app->app->graph tutorial
         // profile = await getGraphProfile(accessToken);
         // console.log(`profile: ${JSON.stringify(profile)}`);
       }
