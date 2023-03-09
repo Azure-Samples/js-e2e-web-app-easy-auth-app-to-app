@@ -3,6 +3,11 @@
 import express from 'express';
 import 'isomorphic-fetch';
 import { sortJson, prettyJson } from './sortJson.js';
+
+
+// Uncomment in the app->app->graph tutorial
+// import { getGraphProfile } from './with-graph/graph';
+
 // </getDependencies>
 
 // <create>
@@ -29,7 +34,7 @@ export const create = async () => {
 
     try {
 
-      const fakeProfile = {
+      const profile = {
         "displayName": "John Doe",
 
         // return true if we have an access token
@@ -47,22 +52,24 @@ export const create = async () => {
           return res.status(401).json({ error: 'No access token found' });
         } 
 
-        fakeProfile.withAuthentication = true;
+        profile.withAuthentication = true;
 
         // TODO: get profile from Graph API
-        // provided in next article in this series
-        // and the server2.js file
+        // Uncomment in the app->app->graph tutorial
+        // import { getGraphProfile } from './with-graph/graph';
+        // profile = await getGraphProfile(accessToken);
+        // console.log(`profile: ${JSON.stringify(profile)}`);
       }
 
       const dataToReturn = {
         route: '/profile success',
-        profile: fakeProfile,
+        profile: profile,
         headers: req.headers,
         bearerToken,
         env: process.env,
         error: null,
       }
-      console.log(`backend server.js profile: ${JSON.stringify(fakeProfile)}`)
+      console.log(`backend server.js profile: ${JSON.stringify(profile)}`)
 
       return res.status(200).json(dataToReturn);
 
@@ -84,7 +91,7 @@ export const create = async () => {
   });
 
   // instead of 404 - just return home page
-  app.get('*', (req, res) => {
+  app.get('*', (_, res) => {
     res.json({ status: 'unknown url request' });
   });
 
