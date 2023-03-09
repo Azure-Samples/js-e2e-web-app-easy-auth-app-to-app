@@ -9,18 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diberry/js-e2e-web-app-easy-auth-app-to-app-to-microsoft-graph.git"
+    "url": "git+https://github.com/azure-samples/js-e2e-web-app-easy-auth-app-to-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/diberry/js-e2e-web-app-easy-auth-app-to-app-to-microsoft-graph/issues"
+    "url": "https://github.com/azure-samples/azure-samples/js-e2e-web-app-easy-auth-app-to-app/issues"
   },
-  "homepage": "https://github.com/diberry/js-e2e-web-app-easy-auth-app-to-app-to-microsoft-graph#readme",
+  "homepage": "https://github.com/azure-samples/js-e2e-web-app-easy-auth-app-to-app#readme",
   "devDependencies": {},
   "dependencies": {
-    "@microsoft/microsoft-graph-client": "^3.0.2",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.17.1",
