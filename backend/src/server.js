@@ -32,6 +32,8 @@ export const create = async () => {
   // Get Profile and return to client
   app.get('/get-profile', async (req, res) => {
 
+    console.log('/get-profile requested');
+
     try {
 
       const profile = {
