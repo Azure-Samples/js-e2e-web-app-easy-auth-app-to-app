@@ -19,14 +19,19 @@ export const getRemoteProfile = async (remoteUrl, accessToken, authEnabled) => {
             };
         }
 
-        // Get remote profile
-        const response = await fetch(remoteUrl, {
+        const config = {
             cache: "no-store", // no caching -- for demo purposes only
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        });
+            headers: {}
+        }
+
+        // Add access token as bearer token only if present
+        if(!!accessToken){
+            config.headers.Authorization= `Bearer ${accessToken}`
+        }
+
+        // Get remote profile
+        const response = await fetch(remoteUrl, config);
 
         // Check response status
         if (response.ok) {
