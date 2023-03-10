@@ -48,14 +48,15 @@ export const create = async () => {
 
       if (bearerToken) {
         const accessToken = bearerToken.split(' ')[1];
-        console.log(`backend server.js accessToken: ${!!accessToken ? 'found' : 'not found'}`);
+        
 
         if (!accessToken || accessToken === 'undefined' || accessToken === 'null' || accessToken.length === 0){
+          console.log(`backend server.js accessToken: 'not found'}`);
           return res.status(401).json({ error: 'No access token found' });
-        } 
-
-        console.log(`backend server.js accessToken: ${accessToken}`)
-        profile.withAuthentication = true;
+        } else {
+          console.log(`backend server.js accessToken: 'found' ${accessToken}}`);
+          profile.withAuthentication = true;
+        }
 
         // TODO: get profile from Graph API
         // Uncomment for the app->app->graph tutorial
