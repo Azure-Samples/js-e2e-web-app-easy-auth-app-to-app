@@ -103,6 +103,8 @@ export const create = async () => {
 
       // Get access token from injected header
       const accessToken = req.headers['x-ms-token-aad-access-token'];
+      console.log(`accessToken: ${accessToken}`)
+      
       const authEnabled = process.env.APPSETTING_WEBSITE_AUTH_ENABLED==='true' ? true : false;
       if (authEnabled && !accessToken) {
         return res.render(`${__dirname}/views/profile`, { error: 'Client: No access token found' });
