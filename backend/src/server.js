@@ -6,7 +6,7 @@ import { sortJson, prettyJson } from './sortJson.js';
 
 
 // Uncomment for the app->app->graph tutorial
-// import { getGraphProfile } from './with-graph/graph';
+import { getGraphProfile } from './with-graph/graph.js';
 
 // </getDependencies>
 
