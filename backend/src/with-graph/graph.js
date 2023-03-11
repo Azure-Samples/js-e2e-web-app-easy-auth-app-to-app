@@ -1,5 +1,6 @@
 // ./backend/src/graph.js
 import graph from "@microsoft/microsoft-graph-client";
+import { getGraphToken } from "./auth.js";
 
 // Create client from token with Graph API scope
 export function getAuthenticatedClient(accessToken) {

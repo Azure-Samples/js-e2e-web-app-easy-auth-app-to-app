@@ -42,6 +42,8 @@ export const create = async () => {
         // return true if we have an access token
         "withAuthentication": false
       }
+      let profileFromGraph=false;
+      //let graphProfile={};
 
       const bearerToken = req.headers['Authorization'] || req.headers['authorization'];
       console.log(`backend server.js bearerToken ${!!bearerToken ? 'found' : 'not found'}`);
@@ -60,13 +62,14 @@ export const create = async () => {
 
         // TODO: get profile from Graph API
         // Uncomment for the app->app->graph tutorial
-        // profile = await getGraphProfile(accessToken);
-        // console.log(`profile: ${JSON.stringify(profile)}`);
+        //profileFromGraph=true;
+        //graphProfile = await getGraphProfile(accessToken);
+        //console.log(`profile: ${JSON.stringify(graphProfile)}`);
       }
 
       const dataToReturn = {
         route: '/profile success',
-        profile: profile,
+        profile: (profileFromGraph) ? { authentication: true, ...graphProfile }: {...profile},
         headers: req.headers,
         bearerToken,
         env: process.env,
