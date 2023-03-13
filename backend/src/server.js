@@ -62,9 +62,15 @@ export const create = async () => {
 
         // TODO: get profile from Graph API
         // Uncomment for the app->app->graph tutorial
+
+        // where did the profile come from
         //profileFromGraph=true;
+
+        // get the profile from Microsoft Graph
         //graphProfile = await getGraphProfile(accessToken);
-        //console.log(`profile: ${JSON.stringify(graphProfile)}`);
+
+        // log the profile for debugging
+        // console.log(`profile: ${JSON.stringify(graphProfile)}`);
       }
 
       const dataToReturn = {
